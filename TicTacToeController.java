@@ -10,6 +10,7 @@ public class TicTacToeController{
 	private static final int COL = 3;
 	private static final int X = 1; //X's
 	private static final int O = 2; //O's
+	private static final int MAX_TURNS = 8; //because counter starts at 0
 
 	private Scanner scan;
 	private int[][] grid;
@@ -40,9 +41,9 @@ public class TicTacToeController{
 			//display the final board
 			displayBoard();
 			
-			if(winner == 1){
+			if(winner == X){
 				System.out.println("X's Win!");
-			}else if(winner == 2){
+			}else if(winner == O){
 				System.out.println("O's Win!");
 			}else{
 				System.out.println("Tied Game!");
@@ -65,17 +66,17 @@ public class TicTacToeController{
 		for(int i = 0; i < ROW; i++){
 			for(int j = 0; j < COL; j++){
 				if((i == 0 || i == 1 || i == 2) && j != 2){ //fill in horizontal values
-					if(grid[i][j] == 1){
+					if(grid[i][j] == X){
 						System.out.print("X|");
-					}else if(grid[i][j] == 2){
+					}else if(grid[i][j] == O){
 						System.out.print("O|");
 					}else{
 						System.out.print(" |");
 					}
 				}else if(j == 2){ //end of line, go to next line
-					if(grid[i][j] == 1){
+					if(grid[i][j] == X){
 						System.out.println("X");
-					}else if(grid[i][j] == 2){
+					}else if(grid[i][j] == O){
 						System.out.println("O");
 					}else{
 						System.out.println(" ");
@@ -110,9 +111,9 @@ public class TicTacToeController{
 	 * Win Senarios
 	 *
 	 * HORIZONTAL: 
- 	 * 	[0][0], [0][1], [0][2]
+	 * 	[0][0], [0][1], [0][2]
 	 *	[1][0], [1][1], [1][2]
-	 *      [2][0], [2][1], [2][2]
+	 * 	[2][0], [2][1], [2][2]
 	 * VERTICAL:
 	 *	[0][0], [1][0], [2][0]
 	 *	[0][1], [1][1], [2][1]
@@ -124,56 +125,56 @@ public class TicTacToeController{
 	 * Check if there is 3 in a row for these scenarios 
 	 */
 	public boolean isWinner(){
-		if(grid[0][0] == 1 && grid[0][1] == 1 && grid[0][2] == 1){
-			winner = 1;
+		if(grid[0][0] == X && grid[0][1] == X && grid[0][2] == X){
+			winner = X;
 			return true;
-		}else if(grid[1][0] == 1 && grid[1][1] == 1 && grid[1][2] == 1){
-			winner = 1;
+		}else if(grid[1][0] == X && grid[1][1] == X && grid[1][2] == X){
+			winner = X;
 			return true;
-		}else if(grid[2][0] == 1 && grid[2][1] == 1 && grid[2][2] == 1){
-                        winner = 1;
+		}else if(grid[2][0] == X && grid[2][1] == X && grid[2][2] == X){
+                        winner = X;
                         return true;
-                }else if(grid[0][0] == 1 && grid[1][0] == 1 && grid[2][0] == 1){
-                        winner = 1;
+                }else if(grid[0][0] == X && grid[1][0] == X && grid[2][0] == X){
+                        winner = X;
                         return true;
-                }else if(grid[0][1] == 1 && grid[1][1] == 1 && grid[2][1] == 1){
-                        winner = 1;
+                }else if(grid[0][1] == X && grid[1][1] == X && grid[2][1] == X){
+                        winner = X;
                         return true;
-                }else if(grid[0][2] == 1 && grid[1][2] == 1 && grid[2][2] == 1){
-                        winner = 1;
+                }else if(grid[0][2] == X && grid[1][2] == X && grid[2][2] == X){
+                        winner = X;
                         return true;
-                }else if(grid[0][0] == 1 && grid[1][1] == 1 && grid[2][2] == 1){
-                        winner = 1;
+                }else if(grid[0][0] == X && grid[1][1] == X && grid[2][2] == X){
+                        winner = X;
                         return true;
-                }else if(grid[0][2] == 1 && grid[1][1] == 1 && grid[2][0] == 1){
-                        winner = 1;
+                }else if(grid[0][2] == X && grid[1][1] == X && grid[2][0] == X){
+                        winner = X;
                         return true;
-                }else if(grid[0][0] == 2 && grid[0][1] == 2 && grid[0][2] == 2){
-                        winner = 2;
+                }else if(grid[0][0] == O && grid[0][1] == O && grid[0][2] == O){
+                        winner = O;
                         return true;
-                }else if(grid[1][0] == 2 && grid[1][1] == 2 && grid[1][2] == 2){
-                        winner = 2;
+                }else if(grid[1][0] == O && grid[1][1] == O && grid[1][2] == O){
+                        winner = O;
                         return true;
-                }else if(grid[2][0] == 2 && grid[2][1] == 2 && grid[2][2] == 2){
-                        winner = 2;
+                }else if(grid[2][0] == O && grid[2][1] == O && grid[2][2] == O){
+                        winner = O;
                         return true;
-                }else if(grid[0][0] == 2 && grid[1][0] == 2 && grid[2][0] == 2){
-                        winner = 2;
+                }else if(grid[0][0] == O && grid[1][0] == O && grid[2][0] == O){
+                        winner = O;
                         return true;
-                }else if(grid[0][1] == 2 && grid[1][1] == 2 && grid[2][1] == 2){
-                        winner = 2;
+                }else if(grid[0][1] == O && grid[1][1] == O && grid[2][1] == O){
+                        winner = O;
                         return true;
-                }else if(grid[0][2] == 2 && grid[1][2] == 2 && grid[2][2] == 2){
-                        winner = 2;
+                }else if(grid[0][2] == O && grid[1][2] == O && grid[2][2] == O){
+                        winner = O;
                         return true;
-                }else if(grid[0][0] == 2 && grid[1][1] == 2 && grid[2][2] == 2){
-                        winner = 2;
+                }else if(grid[0][0] == O && grid[1][1] == O && grid[2][2] == O){
+                        winner = O;
                         return true;
-                }else if(grid[0][2] == 2 && grid[1][1] == 2 && grid[2][0] == 2){
-                        winner = 2;
+                }else if(grid[0][2] == O && grid[1][1] == O && grid[2][0] == O){
+                        winner = O;
                         return true;
                 }else{
-			if(counter == 8){
+			if(counter == MAX_TURNS){
 				winner = 0; //no winner
 				return true; //ends the game, but winner = 0 so the game is tied
 			}else{
