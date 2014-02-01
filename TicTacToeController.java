@@ -33,9 +33,11 @@ public class TicTacToeController{
 			while(!hasWon){
 				//time to play the game
 				displayBoard(); //show the board
-				askInput(counter); //as for user's move
-				hasWon = isWinner();
-				counter++; //turn is over, increase the counter for next turn
+				boolean isValid = askInput(counter); //as for user's move
+				if(isValid){
+					hasWon = isWinner();
+					counter++; //turn is over, increase the counter for next turn
+				}		
 			}
 
 			//display the final board
@@ -92,18 +94,24 @@ public class TicTacToeController{
 	}
 
 	/** Ask the user for token placement input */
-	public void askInput(int turn){
+	public boolean askInput(int turn){
 		System.out.println("Enter a row: ");
 		int row = scan.nextInt();
 		System.out.println("Enter a col: ");
 		int col = scan.nextInt();
-		
-		//using the counter, check who's turn it is
-		//even turns are X, odd turns are O
-		if(turn % 2 == 0){
-			grid[row][col] = X;
-		}else{
-			grid[row][col] = O;
+
+		if(grid[row][col] != 0){
+			System.out.println("This space has already been used. Try again.");
+			return false;
+		}else{		
+			//using the counter, check who's turn it is
+			//even turns are X, odd turns are O
+			if(turn % 2 == 0){
+				grid[row][col] = X;
+			}else{
+				grid[row][col] = O;
+			}
+			return true;
 		}
 	}	
 

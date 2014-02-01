@@ -4,3 +4,7 @@
 *.jar
 *.war
 *.ear
+
+#vi files
+*.swp
+*.swo
